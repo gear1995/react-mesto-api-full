@@ -47,27 +47,20 @@ function App() {
     }
   }, [loggedIn]);
 
-  function checkToken() {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      auth
-        .checkToken(token)
-        .then((res) => {
-          if (res.data) {
-            setUserEmail(res.data.email);
-            setLoggedIn(true);
-            history.push("/");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }
-
-  useEffect(() => {
-    checkToken();
-  }, []);
+  React.useEffect(() => {
+    auth
+      .checkToken()
+      .then((res) => {
+      if (res.data) {
+          setUserEmail(res.data.email);
+          setLoggedIn(true);
+          history.push("/");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [history]);
 
   const closeAllPopups = () => {
     setIsEditAvatarPopupOpen(false);
@@ -160,9 +153,8 @@ function App() {
     auth
       .authorize(data)
       .then((res) => {
-        if (res.token) {
+        if (res) {
           setLoggedIn(true);
-          localStorage.setItem("jwt", res.token);
           setUserEmail(data.email);
           history.push("/");
         }
@@ -194,7 +186,7 @@ function App() {
   }
 
   function handleSignOut() {
-    localStorage.removeItem("jwt");
+    //localStorage.removeItem("jwt");
     setLoggedIn(false);
   }
 

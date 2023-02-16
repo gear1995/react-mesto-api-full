@@ -3,8 +3,9 @@ export const BASE_URL = "https://api.gear1995v.students.nomoredomains.work";
 export const register = ({ password, email }) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
-    credentials: 'include',
+    credentials: "include",
     headers: {
+      "Accept": "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ password, email }),
@@ -14,9 +15,9 @@ export const register = ({ password, email }) => {
 export const authorize = ({ password, email }) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
-    credentials: 'include',
+    credentials: "include",
     headers: {
-      Accept: "application/json",
+      "Accept": "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ password, email }),
@@ -26,19 +27,19 @@ export const authorize = ({ password, email }) => {
 export const checkToken = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
-    credentials: 'include',
+    credentials: "include",
     headers: {
-      Accept: "application/json",
+      "Accept": "application/json",
       "Content-Type": "application/json",
     },
-  }).then(this._checkResponse);
+  }).then(checkServerResponse);
 }
 
 /* export const checkToken = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
-      Accept: "application/json",
+      "Accept": "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
