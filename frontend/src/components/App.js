@@ -39,6 +39,7 @@ function App() {
       Promise.all([api.getUserInfo(), api.getCards()])
         .then(([userInfo, cards]) => {
           setCurrentUser(userInfo);
+          console.log(cards)
           setCards(cards);
         })
         .catch((error) => {
@@ -205,6 +206,7 @@ function App() {
           onCardClick={handleCardClick}
           onCardLike={handleCardLike}
           onCardDelete={handleCardDelete}
+          
           cards={cards}
           loggedIn={loggedIn}
         />
