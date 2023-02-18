@@ -12,7 +12,7 @@ function Main({
   onCardDelete,
 }) {
   const currentUser = useContext(CurrentUserContext);
-  console.log(cards)
+
   const cardsElements = cards.map((card) => (
     <Card
       card={card}

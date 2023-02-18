@@ -70,8 +70,8 @@ export class Api {
   setLike(id) {
     return fetch(`${this._host}/cards/${id}/likes`, {
       method: "PUT",
-      headers: this._getHeaders(),
       credentials: "include",
+      headers: this._getHeaders(),
     }).then(this._checkServerResponse);
   }
 
